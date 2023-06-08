@@ -1,4 +1,6 @@
 import requests
+
+
 class News:
         def __init__(self,city):
                 self.city = city
@@ -11,8 +13,9 @@ class News:
                 news_response = requests.get(news_api_url, params=news_params)
                 articles = news_response.json()["articles"]
                 three_articles = articles[:3]
-                #print(three_articles)
-                formatted_articles = [f"W mieście {city}: Headline: {article['title']}. \nBrief: {article['description']}" for article in three_articles]
-                print(formatted_articles)
-Wiadomosci= News("Wrocław")
+                self.formatted_articles = [f"W mieście {city}: Headline: {article['title']}. \nBrief: {article['description']}" for article in three_articles]
+
+        def get_news(self):
+                return self.formatted_articles
+
 
