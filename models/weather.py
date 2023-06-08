@@ -9,9 +9,8 @@ class Weather:
         api_url = 'https://api.api-ninjas.com/v1/weather?city={}'.format(city)
         response = requests.get(api_url, headers={'X-Api-Key': 'jXWlaMLXiXssi9FBSqEJKA==m5a7a0cLHGQZtdb7'})
         if response.status_code == requests.codes.ok:
-            print(response.text)
-        else:
-            print("Error Weather Class :", response.status_code, response.text)
+            self.data = response.json()
+
     def get_humidity(self):
         humidity = self.data.get('humidity')
         return humidity
@@ -34,11 +33,6 @@ class Weather:
         wind = self.data.get('wind_speed')
         return wind
 
-
-
-
-
-
-#Pogoda = Weather("Żary")
-
-
+    def get_all_data(self):
+        self.data['city'] = self.city
+        return self.data

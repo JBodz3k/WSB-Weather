@@ -6,6 +6,7 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from io import BytesIO
 import base64
 
+
 class Forecast:
     def __init__(self, city):
         self.city = city
@@ -17,6 +18,7 @@ class Forecast:
         response = requests.get(api_url)
         if response.status_code == requests.codes.ok:
             self.data = response.json()
+            print('self.data: ', self.data)
         else:
             print("Error Forecast Class :", response.status_code, response.text)
 
@@ -64,6 +66,3 @@ class Forecast:
 
         html = '<img src="data:image/png;base64,' + base64.b64encode(data).decode() + '">'
         return html
-
-Prognoza = Forecast("Wroclaw")
-print(Prognoza.get_chart_html())
