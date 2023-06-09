@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
@@ -15,34 +18,40 @@
                 <form action="/" method="POST">
                     <label for="user_input">Enter city:</label>
                     <input type="text" name="user_input" id="user_input" placeholder="What city you would like to check?" size="80" required>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Go</button>
                 </form>
                 <div class="sub-container">
-                    <div class="ikonka">
+                    <div class="row-one">
+                        <div class="ikonka tile">
+                        </div>
+                        <div class="miasto tile">
+                            {{ data.city }}
+                        </div>
+                        <div class="temperatura tile">
+                            {{ data.temp }} <p> °C</p>
+                        </div>
+                        <div class="wilgotnosc tile">
+                            {{ data.humidity }} <p> %</p>
+                        </div>
+                        <div class="wiatr tile">
+                            {{ data.wind_speed }} <p> m/s</p>
+                        </div>
                     </div>
-                    <div class="miasto">
-                        {{ data.city }}
+                    <div class="row-two">
+                        <div class="mapka tile">
+                        </div>
+                        <div class="wykres tile">
+                            {{ chart|safe }}
+                        </div>
                     </div>
-                    <div class="temperatura">
-                        {{ data.temp }}
-                    </div>
-                    <div class="wilgotnosc">
-                        {{ data.humidity }}
-                    </div>
-                    <div class="wiatr">
-                        {{ data.wind_speed }}
-                    </div>
-                    <div class="mapka">
-                    </div>
-                    <div class="wykres">
-                        {{ chart|safe }}
-                    </div>
-                    <div class="wiadomosci" style="color: black;">
-                        <ul>
-                          {% for item in city_info %}
-                            <li>{{ item }}</li>
-                          {% endfor %}
-                        </ul>
+                    <div class="row-three">
+                        <div class="wiadomosci tile" style="color: black;">
+                            <ul>
+                              {% for item in city_info %}
+                                <li>{{ item }}</li>
+                              {% endfor %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
